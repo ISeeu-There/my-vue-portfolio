@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "types": ["vuetify"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",   // 🔑 fix
+    "target": "ESNext",
+    "jsx": "preserve",
+    "strict": true,
+    "allowJs": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "useDefineForClassFields": true
+  }
+}
