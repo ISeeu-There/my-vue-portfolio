@@ -5,12 +5,12 @@
       <div class="text-center mb-16" data-aos="fade-up">
         <div class="section-badge mb-6">
           <v-chip
-            color="orange"
+            color="cyan"
             variant="outlined"
             size="large"
             class="px-6 py-2"
           >
-            <v-icon icon="mdi-star" size="16" class="mr-2" />
+            <v-icon icon="mdi-star" color="cyan" size="16" class="mr-2" />
             What I Do
           </v-chip>
         </div>
@@ -21,7 +21,7 @@
         </h2>
 
         <p
-          class="text-h6 text-grey-darken-1 mx-auto line-height-relaxed"
+          class="text-h6 text-cyan mx-auto line-height-relaxed"
           style="max-width: 650px"
         >
           I offer a comprehensive range of digital services designed to
@@ -101,32 +101,6 @@
               <p class="text-body-1 mb-8 line-height-relaxed">
                 {{ service.description }}
               </p>
-
-              <!-- Enhanced Buttons -->
-              <div class="button-group">
-                <v-btn
-                  :color="service.color"
-                  variant="flat"
-                  rounded="pill"
-                  size="large"
-                  class="mb-3 service-btn-primary"
-                  append-icon="mdi-arrow-right"
-                >
-                  Learn More
-                </v-btn>
-
-                <br />
-
-                <v-btn
-                  :color="service.color"
-                  variant="outlined"
-                  rounded="pill"
-                  size="default"
-                  class="service-btn-secondary"
-                >
-                  View Portfolio
-                </v-btn>
-              </div>
 
               <!-- Service Features -->
               <div class="service-features mt-6" v-if="service.features">
@@ -215,16 +189,8 @@ const services: Service[] = [
     description:
       "Beautiful, intuitive designs that enhance user experience and reflect your brand identity perfectly. I focus on creating designs that convert visitors into customers.",
     icon: "mdi-palette",
-    color: "purple",
+    color: "light-cyan",
     features: ["User Research", "Prototyping", "Brand Identity"],
-  },
-  {
-    title: "SEO & Marketing",
-    description:
-      "Optimize your digital presence for search engines and implement marketing strategies that increase visibility, drive organic traffic, and boost your business growth.",
-    icon: "mdi-chart-line",
-    color: "green",
-    features: ["Technical SEO", "Content Strategy", "Analytics"],
   },
 ];
 

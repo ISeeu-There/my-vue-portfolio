@@ -93,7 +93,7 @@ interface SocialLink {
 }
 
 const socialLinks: SocialLink[] = [
-  { icon: "mdi-facebook", url: "#" },
+  { icon: "mdi-github", url: "https://github.com/ISeeu-There" },
   { icon: "mdi-twitter", url: "#" },
   { icon: "mdi-instagram", url: "#" },
   { icon: "mdi-linkedin", url: "#" },

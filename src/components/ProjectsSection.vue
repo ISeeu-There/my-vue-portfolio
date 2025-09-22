@@ -6,12 +6,17 @@
       <div class="text-center mb-16" data-aos="fade-up">
         <div class="section-badge mb-6">
           <v-chip
-            color="orange"
+            color="cyan"
             variant="outlined"
             size="large"
             class="px-6 py-2"
           >
-            <v-icon icon="mdi-briefcase-variant" size="16" class="mr-2" />
+            <v-icon
+              icon="mdi-briefcase-variant"
+              color="cyan"
+              size="16"
+              class="mr-2"
+            />
             My Work
           </v-chip>
         </div>
@@ -22,7 +27,7 @@
         </h2>
 
         <p
-          class="text-h6 text-grey-darken-1 mx-auto line-height-relaxed"
+          class="text-h6 text-cyan mx-auto line-height-relaxed"
           style="max-width: 650px"
         >
           Explore my recent projects that showcase innovative solutions and
@@ -34,7 +39,7 @@
       <!-- Projects Section Header -->
       <div class="mb-12" data-aos="fade-up" data-aos-delay="100">
         <div class="d-flex align-center mb-6">
-          <v-avatar color="orange" size="50" class="mr-4">
+          <v-avatar color="cyan" size="50" class="mr-4">
             <v-icon icon="mdi-folder-multiple" color="white" size="24" />
           </v-avatar>
           <h3 class="text-h3 font-weight-bold gradient-text">
@@ -197,8 +202,22 @@
                   class="mb-2 project-btn-primary"
                   append-icon="mdi-open-in-new"
                   block
+                  :href="project.liveUrl"
+                  target="_blank"
+                  v-if="project.liveUrl"
                 >
                   View Live Demo
+                </v-btn>
+                <v-btn
+                  variant="flat"
+                  rounded="pill"
+                  size="default"
+                  class="mb-2 project-btn-primary disabled"
+                  append-icon="mdi-web-off"
+                  block
+                  v-else
+                >
+                  Not Available Live Demo
                 </v-btn>
 
                 <v-btn
@@ -209,6 +228,7 @@
                   class="project-btn-secondary"
                   append-icon="mdi-github"
                   block
+                  :href="project.gitUrl"
                 >
                   View Source Code
                 </v-btn>
@@ -237,6 +257,15 @@
 </template>
 
 <script setup lang="ts">
+import canubeatme from "@/assets/canubeatme.png";
+import eventgg from "@/assets/event-gg.png";
+
+import myportfolio from "@/assets/myportfolio.png";
+
+import realestateagency from "@/assets/real-estate-agency.png";
+import todo from "@/assets/todo.png";
+import ekadia from "@/assets/ekadia.png";
+
 import { ref } from "vue";
 
 interface TechItem {
@@ -258,6 +287,8 @@ interface Project {
   technologies: TechItem[];
   primaryTech: TechItem;
   status: "Live" | "In Progress" | "Completed";
+  liveUrl?: string;
+  gitUrl?: string;
   stats: ProjectStats;
 }
 
@@ -265,27 +296,77 @@ const hoveredCard = ref<number | null>(null);
 
 const projects: Project[] = [
   {
-    title: "E-commerce Platform",
+    title: "Gaming Platform ",
     description:
-      "Modern e-commerce solution with advanced features including real-time inventory, AI-powered recommendations, and seamless payment integration for optimal user experience.",
-    image:
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop",
+      "An interactive gaming platform that connects players with events and tournaments in real-time. Built with Vue.js, Vuetify, and Firebase, it features a responsive interface, real-time updates, and seamless user experience for gamers looking to join or host gaming events.",
+    image: eventgg,
     primaryTech: { name: "Vue.js", icon: "mdi-vuejs", color: "green" },
     status: "Live",
-    stats: { duration: "3 Mo", team: "4", role: "Lead" },
+    stats: { duration: "still in dev", team: "only me", role: "Lead" },
+    technologies: [
+      { name: "Vue.js", icon: "mdi-vuejs", color: "green" },
+      { name: "Vuetify", icon: "mdi-vuetify", color: "green-darken-2" },
+      { name: "Firebase", icon: "mdi-firebase", color: "green-darken-3" },
+      { name: "TypeScript", icon: "mdi-language-typescript", color: "blue" },
+    ],
+    liveUrl: "https://game-event-rho.vercel.app/",
+    gitUrl: "https://github.com/ISeeu-There/game-event",
+  },
+  {
+    title: "E-Kadia",
+    description:
+      "Completed a 3-month internship focused on modern web development.Worked with Vue 3, TypeScript, and REST APIs to build and improve front-endapplications.Refactored a core project (E-Kadia): migrated the codebase from Vue 2 (JavaScript)to Vue 3 (TypeScript), improving maintainability and scalability.Collaborated with the development team to ensure code quality, best practices, andsmooth integration with backend services.Gained hands-on experience in frontend frameworks, API consumption, and project modernization",
+    image: ekadia,
+    primaryTech: { name: "Vuejs", icon: "mdi-vuejs", color: "green" },
+    status: "Live",
+    stats: { duration: " 4 weeks", team: "only me", role: "lead" },
+    technologies: [
+      { name: "Vue.js", icon: "mdi-vuejs", color: "green" },
+      { name: "Vuetify", icon: "mdi-vuetify", color: "blue" },
+      { name: "Firebase", icon: "mdi-firebase", color: "blue" },
+
+      { name: "TypeScript", icon: "mdi-language-typescript", color: "blue" },
+    ],
+    gitUrl: "https://github.com/ISeeu-There/e-kadia",
+  },
+  {
+    title: "E-Football Site Web",
+    description:
+      "A sleek and responsive web platform for e-football enthusiasts, built with Next.js and Node.js. The site allows users to explore football content, stay updated with the latest matches, and enjoy a smooth and interactive browsing experience.",
+    image: canubeatme,
+    primaryTech: { name: "Next.js", icon: "mdi-react", color: "green" },
+    status: "Completed",
+    stats: { duration: " 1 week", team: "only me", role: "Lead" },
+    technologies: [
+      { name: "Next.js", icon: "mdi-vuejs", color: "green" },
+      { name: "Node.js", icon: "mdi-nodejs", color: "green-darken-2" },
+    ],
+    liveUrl: "https://game-awwards.vercel.app/",
+    gitUrl: "https://github.com/ISeeu-There/game-awwards",
+  },
+  {
+    title: "Real Estat Agency",
+    description:
+      "A modern real estate web application built with Vue.js, Vuetify, Firebase, Node.js, and TypeScript. The platform allows users to browse properties with ease, while an integrated admin dashboard enables full management of listings, users, and transactions in real-time.",
+    image: realestateagency,
+    primaryTech: { name: "Vue.js", icon: "mdi-vuejs", color: "green" },
+    status: "In Progress",
+    stats: { duration: "2 week", team: "only me", role: "Lead" },
     technologies: [
       { name: "Vue.js", icon: "mdi-vuejs", color: "green" },
       { name: "Node.js", icon: "mdi-nodejs", color: "green-darken-2" },
-      { name: "MongoDB", icon: "mdi-database", color: "green-darken-3" },
-      { name: "Stripe", icon: "mdi-credit-card", color: "blue" },
+      { name: "Firebase", icon: "mdi-firebase", color: "green-darken-3" },
+      { name: "Vuetify", icon: "mdi-vuetify", color: "blue" },
+      { name: "TypeScript", icon: "mdi-language-typescript", color: "blue" },
     ],
+    liveUrl: "https://real-estate-agency-tawny.vercel.app/",
+    gitUrl: "https://github.com/ISeeu-There/real-estate-agency",
   },
   {
-    title: "Bryan Lore Portfolio",
+    title: "My Portfolio Created with React",
     description:
       "Creative portfolio website showcasing artistic works with interactive 3D elements, smooth animations, and immersive user experience using cutting-edge web technologies.",
-    image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop",
+    image: myportfolio,
     primaryTech: { name: "React", icon: "mdi-react", color: "blue" },
     status: "Completed",
     stats: { duration: "2 Mo", team: "2", role: "Dev" },
@@ -295,22 +376,20 @@ const projects: Project[] = [
       { name: "GSAP", icon: "mdi-animation", color: "green" },
       { name: "WebGL", icon: "mdi-triangle", color: "orange" },
     ],
+    gitUrl: "https://github.com/ISeeu-There/My-Portfolio",
   },
   {
-    title: "Analytics Dashboard",
-    description:
-      "Comprehensive analytics dashboard with real-time data visualization, advanced filtering capabilities, and interactive charts for business intelligence and decision making.",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop",
-    primaryTech: { name: "Angular", icon: "mdi-angular", color: "red" },
-    status: "In Progress",
-    stats: { duration: "4 Mo", team: "5", role: "Full" },
+    title: "To Do List",
+    description: "",
+    image: todo,
+    primaryTech: { name: "vue", icon: "mdi-vuejs", color: "green" },
+    status: "Completed",
+    stats: { duration: "1 week", team: "only me", role: "lead" },
     technologies: [
-      { name: "Angular", icon: "mdi-angular", color: "red" },
-      { name: "D3.js", icon: "mdi-chart-line", color: "orange" },
-      { name: "Firebase", icon: "mdi-firebase", color: "orange-accent-3" },
+      { name: "Vue", icon: "mdi-vuejs", color: "green" },
       { name: "TypeScript", icon: "mdi-language-typescript", color: "blue" },
     ],
+    gitUrl: "https://github.com/ISeeu-There/to-do-list-",
   },
 ];
 

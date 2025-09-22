@@ -1,4 +1,3 @@
-<!-- src/components/ContactSection.vue -->
 <template>
   <section id="contact" class="contact-section py-16">
     <v-container>
@@ -177,6 +176,7 @@
                 <!-- Submit Button -->
                 <div class="text-center">
                   <v-btn
+                    id="send-email"
                     type="submit"
                     color="cyan"
                     size="x-large"
@@ -282,6 +282,7 @@
                   rounded="pill"
                   size="large"
                   class="contact-action-btn"
+                  :href="contact.locationUrl"
                   :append-icon="contact.actionIcon"
                 >
                   {{ contact.actionText }}
@@ -319,6 +320,7 @@
 
 <script setup lang="ts">
 import { ref, reactive } from "vue";
+import emailjs from "@emailjs/browser";
 
 interface ContactInfo {
   title: string;
@@ -327,6 +329,7 @@ interface ContactInfo {
   color: string;
   actionText: string;
   actionIcon: string;
+  locationUrl?: string;
 }
 
 interface ContactForm {
@@ -368,11 +371,13 @@ const contactInfo: ContactInfo[] = [
   },
   {
     title: "Location",
-    value: "Algeria, DZ",
+    value: "Tipaza-BouIsmail, DZ",
     icon: "mdi-map-marker",
     color: "red",
     actionText: "View Map",
     actionIcon: "mdi-map",
+    locationUrl:
+      "https://www.google.com/maps/place/Bou+Isma%C3%AFl/@36.6411828,2.6621601,13z/data=!3m1!4b1!4m6!3m5!1s0x128f9ea04e9311f9:0x69cbea724f606b38!8m2!3d36.6427898!4d2.6899908!16s%2Fm%2F064ny53?entry=ttu&g_ep=EgoyMDI1MDkxNy4wIKXMDSoASAFQAw%3D%3D",
   },
 ];
 
@@ -414,20 +419,38 @@ const submitForm = async () => {
   if (valid) {
     isSubmitting.value = true;
 
-    // Simulate form submission
-    setTimeout(() => {
-      isSubmitting.value = false;
-      showSuccess.value = true;
+    const templateParams = {
+      from_name: form.name,
+      from_email: form.email,
+      subject: form.subject,
+      message: form.message,
+    };
 
-      // Reset form
-      Object.assign(form, {
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      });
-      contactForm.value.resetValidation();
-    }, 2000);
+    emailjs
+      .send(
+        "service_b4qpzla", // Service ID
+        "template_qzwmg3r", // Template ID
+        templateParams,
+        "li-khLDWMBCkL5ACa" // Public Key
+      )
+      .then(
+        () => {
+          isSubmitting.value = false;
+          showSuccess.value = true;
+
+          Object.assign(form, {
+            name: "",
+            email: "",
+            subject: "",
+            message: "",
+          });
+          contactForm.value.resetValidation();
+        },
+        (error) => {
+          isSubmitting.value = false;
+          alert("Failed to send message: " + error.text);
+        }
+      );
   }
 };
 </script>

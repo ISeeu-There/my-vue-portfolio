@@ -363,6 +363,11 @@ const education: Education = {
   description: "The key milestones in my educational journey.",
   items: [
     {
+      institution: "Sig-Service ",
+      degree: "Dely Ibrahim",
+      duration: "3 months",
+    },
+    {
       institution: "Malek Ben Nabi High School",
       degree: "Baccalaureate",
       duration: "2019 - 2020",

@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@fontsource/cairo": "^5.2.7",
     "@mdi/font": "^7.4.47",
     "vue": "^3.5.21",

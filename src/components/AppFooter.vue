@@ -3,8 +3,8 @@
     <v-container>
       <v-row>
         <v-col cols="12" md="4" class="mb-6">
-          <h3 class="text-h5 font-weight-bold mb-4">Brunao Dev</h3>
-          <p class="text-body-2 mb-4">
+          <h3 class="text-h5 font-weight-bold mb-4">Atout Assem Mouloud Dev</h3>
+          <p class="text-body-2 text-cyan mb-4">
             Creating exceptional digital experiences through innovative design
             and development solutions.
           </p>
@@ -31,30 +31,20 @@
           </ul>
         </v-col>
 
-        <v-col cols="12" md="2" class="mb-6">
-          <h4 class="text-h6 font-weight-bold mb-4">Services</h4>
-          <ul class="footer-links">
-            <li><a href="#">Web Development</a></li>
-            <li><a href="#">UI/UX Design</a></li>
-            <li><a href="#">SEO Optimization</a></li>
-            <li><a href="#">Consulting</a></li>
-          </ul>
-        </v-col>
-
         <v-col cols="12" md="4" class="mb-6">
           <h4 class="text-h6 font-weight-bold mb-4">Get In Touch</h4>
           <div class="contact-info">
             <p class="mb-2">
               <v-icon icon="mdi-email" size="16" class="mr-2" />
-              hello@brunaodev.com
+              atoutassem@gmail.com
             </p>
             <p class="mb-2">
               <v-icon icon="mdi-phone" size="16" class="mr-2" />
-              +1 (555) 123-4567
+              +213 663869066
             </p>
             <p class="mb-2">
               <v-icon icon="mdi-map-marker" size="16" class="mr-2" />
-              New York, USA
+              Tipaza, DZ
             </p>
           </div>
         </v-col>
@@ -63,7 +53,9 @@
       <v-divider class="my-6" color="white" opacity="0.2" />
 
       <div class="text-center text-body-2">
-        <p>&copy; {{ currentYear }} Brunao Dev. All rights reserved.</p>
+        <p>
+          &copy; {{ currentYear }} Atout Assem Mouloud Dev. All rights reserved.
+        </p>
       </div>
     </v-container>
   </v-footer>
@@ -82,7 +74,7 @@ const socialLinks: SocialLink[] = [
   { icon: "mdi-twitter", url: "#" },
   { icon: "mdi-instagram", url: "#" },
   { icon: "mdi-linkedin", url: "#" },
-  { icon: "mdi-github", url: "#" },
+  { icon: "mdi-github", url: "https://github.com/ISeeu-There" },
 ];
 
 const currentYear = computed(() => new Date().getFullYear());
