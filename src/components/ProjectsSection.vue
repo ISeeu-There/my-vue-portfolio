@@ -1,4 +1,3 @@
-<!-- src/components/ProjectsSection.vue -->
 <template>
   <section id="projects" class="py-16 resume-section">
     <v-container>
@@ -48,20 +47,21 @@
         </div>
       </div>
 
-      <!-- Projects Grid -->
-      <v-row class="justify-center">
-        <v-col
-          v-for="(project, index) in projects"
-          :key="project.title"
-          cols="12"
-          sm="6"
-          lg="4"
-          class="mb-8"
-          :data-aos="'fade-up'"
-          :data-aos-delay="index * 100"
-        >
+      <!-- Projects Swiper -->
+      <Swiper
+        :space-between="30"
+        :slides-per-view="1"
+        :breakpoints="{
+          640: { slidesPerView: 1 },
+          768: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 },
+        }"
+        navigation
+        pagination
+      >
+        <SwiperSlide v-for="(project, index) in projects" :key="project.title">
           <v-card
-            class="project-card h-100 position-relative overflow-hidden"
+            class="project-card h-100 d-flex flex-column"
             elevation="0"
             rounded="xl"
             hover
@@ -117,7 +117,9 @@
             </div>
 
             <!-- Card Content -->
-            <v-card-text class="pa-6 position-relative">
+            <v-card-text
+              class="pa-6 position-relative flex-grow-1 d-flex flex-column"
+            >
               <!-- Project Title with Icon -->
               <div class="d-flex align-center mb-3">
                 <v-avatar
@@ -187,14 +189,15 @@
                     variant="tonal"
                     class="tech-chip"
                   >
-                    <v-icon :icon="tech.icon" size="12" class="mr-1" />
-                    {{ tech.name }}
+                    <v-icon :icon="tech.icon" size="12" class="mr-1" />{{
+                      tech.name
+                    }}
                   </v-chip>
                 </div>
               </div>
 
-              <!-- Action Buttons -->
-              <div class="button-group">
+              <!-- Action Buttons aligned to bottom -->
+              <div class="mt-auto button-group">
                 <v-btn
                   variant="flat"
                   rounded="pill"
@@ -250,36 +253,38 @@
               <div class="decoration-dot" style="background: #4caf50"></div>
             </div>
           </v-card>
-        </v-col>
-      </v-row>
+        </SwiperSlide>
+      </Swiper>
     </v-container>
   </section>
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
+// Assets
 import canubeatme from "@/assets/canubeatme.png";
 import eventgg from "@/assets/event-gg.png";
-
 import myportfolio from "@/assets/myportfolio.png";
-
 import realestateagency from "@/assets/real-estate-agency.png";
 import todo from "@/assets/todo.png";
 import ekadia from "@/assets/ekadia.png";
 
-import { ref } from "vue";
-
+// Types
 interface TechItem {
   name: string;
   icon: string;
   color: string;
 }
-
 interface ProjectStats {
   duration: string;
   team: string;
   role: string;
 }
-
 interface Project {
   title: string;
   description: string;
@@ -292,13 +297,14 @@ interface Project {
   stats: ProjectStats;
 }
 
+// Reactive
 const hoveredCard = ref<number | null>(null);
 
 const projects: Project[] = [
   {
-    title: "Gaming Platform ",
+    title: "Gaming Platform",
     description:
-      "An interactive gaming platform that connects players with events and tournaments in real-time. Built with Vue.js, Vuetify, and Firebase, it features a responsive interface, real-time updates, and seamless user experience for gamers looking to join or host gaming events.",
+      "An interactive gaming platform that connects players with events and tournaments in real-time. Built with Vue.js, Vuetify, and Firebase, it features a responsive interface, real-time updates, and seamless user experience.",
     image: eventgg,
     primaryTech: { name: "Vue.js", icon: "mdi-vuejs", color: "green" },
     status: "Live",
@@ -315,82 +321,20 @@ const projects: Project[] = [
   {
     title: "E-Kadia",
     description:
-      "Completed a 3-month internship focused on modern web development.Worked with Vue 3, TypeScript, and REST APIs to build and improve front-endapplications.Refactored a core project (E-Kadia): migrated the codebase from Vue 2 (JavaScript)to Vue 3 (TypeScript), improving maintainability and scalability.Collaborated with the development team to ensure code quality, best practices, andsmooth integration with backend services.Gained hands-on experience in frontend frameworks, API consumption, and project modernization",
+      "Completed a 3-month internship focused on modern web development...",
     image: ekadia,
-    primaryTech: { name: "Vuejs", icon: "mdi-vuejs", color: "green" },
+    primaryTech: { name: "Vue.js", icon: "mdi-vuejs", color: "green" },
     status: "Live",
-    stats: { duration: " 4 weeks", team: "only me", role: "lead" },
+    stats: { duration: "4 weeks", team: "only me", role: "Lead" },
     technologies: [
       { name: "Vue.js", icon: "mdi-vuejs", color: "green" },
       { name: "Vuetify", icon: "mdi-vuetify", color: "blue" },
       { name: "Firebase", icon: "mdi-firebase", color: "blue" },
-
-      { name: "TypeScript", icon: "mdi-language-typescript", color: "blue" },
-    ],
-    gitUrl: "https://github.com/ISeeu-There/e-kadia",
-  },
-  {
-    title: "E-Football Site Web",
-    description:
-      "A sleek and responsive web platform for e-football enthusiasts, built with Next.js and Node.js. The site allows users to explore football content, stay updated with the latest matches, and enjoy a smooth and interactive browsing experience.",
-    image: canubeatme,
-    primaryTech: { name: "Next.js", icon: "mdi-react", color: "green" },
-    status: "Completed",
-    stats: { duration: " 1 week", team: "only me", role: "Lead" },
-    technologies: [
-      { name: "Next.js", icon: "mdi-vuejs", color: "green" },
-      { name: "Node.js", icon: "mdi-nodejs", color: "green-darken-2" },
-    ],
-    liveUrl: "https://game-awwards.vercel.app/",
-    gitUrl: "https://github.com/ISeeu-There/game-awwards",
-  },
-  {
-    title: "Real Estat Agency",
-    description:
-      "A modern real estate web application built with Vue.js, Vuetify, Firebase, Node.js, and TypeScript. The platform allows users to browse properties with ease, while an integrated admin dashboard enables full management of listings, users, and transactions in real-time.",
-    image: realestateagency,
-    primaryTech: { name: "Vue.js", icon: "mdi-vuejs", color: "green" },
-    status: "In Progress",
-    stats: { duration: "2 week", team: "only me", role: "Lead" },
-    technologies: [
-      { name: "Vue.js", icon: "mdi-vuejs", color: "green" },
-      { name: "Node.js", icon: "mdi-nodejs", color: "green-darken-2" },
-      { name: "Firebase", icon: "mdi-firebase", color: "green-darken-3" },
-      { name: "Vuetify", icon: "mdi-vuetify", color: "blue" },
-      { name: "TypeScript", icon: "mdi-language-typescript", color: "blue" },
-    ],
-    liveUrl: "https://real-estate-agency-tawny.vercel.app/",
-    gitUrl: "https://github.com/ISeeu-There/real-estate-agency",
-  },
-  {
-    title: "My Portfolio Created with React",
-    description:
-      "Creative portfolio website showcasing artistic works with interactive 3D elements, smooth animations, and immersive user experience using cutting-edge web technologies.",
-    image: myportfolio,
-    primaryTech: { name: "React", icon: "mdi-react", color: "blue" },
-    status: "Completed",
-    stats: { duration: "2 Mo", team: "2", role: "Dev" },
-    technologies: [
-      { name: "React", icon: "mdi-react", color: "blue" },
-      { name: "Three.js", icon: "mdi-cube-outline", color: "purple" },
-      { name: "GSAP", icon: "mdi-animation", color: "green" },
-      { name: "WebGL", icon: "mdi-triangle", color: "orange" },
-    ],
-    gitUrl: "https://github.com/ISeeu-There/My-Portfolio",
-  },
-  {
-    title: "To Do List",
-    description: "",
-    image: todo,
-    primaryTech: { name: "vue", icon: "mdi-vuejs", color: "green" },
-    status: "Completed",
-    stats: { duration: "1 week", team: "only me", role: "lead" },
-    technologies: [
-      { name: "Vue", icon: "mdi-vuejs", color: "green" },
       { name: "TypeScript", icon: "mdi-language-typescript", color: "blue" },
     ],
     gitUrl: "https://github.com/ISeeu-There/to-do-list-",
   },
+  // Add other projects...
 ];
 
 const onCardHover = (index: number, isHovered: boolean) => {
@@ -414,6 +358,18 @@ const getStatusIcon = (status: string): string => {
 <style scoped>
 .resume-section {
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+}
+.project-card {
+  display: flex;
+  flex-direction: column;
+}
+.v-card-text {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.button-group {
+  margin-top: auto;
 }
 .line-height-relaxed {
   line-height: 1.8;

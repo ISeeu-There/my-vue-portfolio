@@ -14,12 +14,14 @@
               >
                 <v-card-text class="pa-6">
                   <!-- Tab Navigation -->
-                  <v-col cols="12" class="mb-4">
+                  <v-col cols="12" class="">
                     <v-tabs
                       v-model="activeTab"
                       background-color="transparent"
                       color="cyan"
                       class="horizontal-tabs"
+                      center-active
+                      show-arrows="false"
                     >
                       <v-tab
                         v-for="tab in tabs"
@@ -457,19 +459,33 @@ onMounted(() => {
   max-width: 600px;
 }
 
-/* Tab Navigation Styles */
+/* Tab Navigation Styles - FIXED */
 .tab-nav-card {
   background: rgba(55, 65, 81, 0.9) !important;
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.custom-tabs {
-  background: transparent;
-}
 .horizontal-tabs {
   display: flex;
-  justify-content: space-between; /* space between each tab */
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Remove underline and default Vuetify tab decorations */
+.horizontal-tabs :deep(.v-slide-group__content) {
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.horizontal-tabs :deep(.v-tab__slider) {
+  display: none !important; /* Remove the underline slider */
+}
+
+.horizontal-tabs :deep(.v-tabs-bar) {
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 .tab-item {
@@ -477,16 +493,38 @@ onMounted(() => {
   font-weight: 600;
   font-size: 1.1rem;
   min-width: auto;
+  flex: 1;
+  max-width: 200px;
+  margin: 0 10px;
+  border-radius: 12px !important;
+  transition: all 0.3s ease;
+  background: transparent !important;
+  border: 2px solid transparent !important;
 }
 
 .tab-item:hover {
   background: rgba(14, 165, 233, 0.1) !important;
-  transform: translateX(8px);
+  border-color: rgba(14, 165, 233, 0.3) !important;
+  transform: translateY(-2px);
 }
 
 .tab-item.v-tab--selected {
   background: rgba(14, 165, 233, 0.2) !important;
+  border-color: rgba(14, 165, 233, 0.5) !important;
   color: #0ea5e9 !important;
+}
+
+/* Remove any additional decorative lines */
+.horizontal-tabs :deep(.v-tabs) {
+  background: transparent !important;
+}
+
+.horizontal-tabs :deep(.v-slide-group) {
+  background: transparent !important;
+}
+
+.custom-tabs {
+  background: transparent;
 }
 
 .tab-text {
@@ -593,14 +631,14 @@ onMounted(() => {
     margin-bottom: 2rem;
   }
 
-  .custom-tabs {
+  .horizontal-tabs :deep(.v-slide-group__content) {
     flex-direction: row !important;
+    justify-content: space-evenly;
   }
 
   .tab-item {
     min-width: 120px;
-    margin-bottom: 0 !important;
-    margin-right: 8px !important;
+    margin: 0 5px;
   }
 }
 
@@ -616,6 +654,16 @@ onMounted(() => {
   .info-value {
     max-width: 55%;
     font-size: 0.875rem;
+  }
+
+  .tab-item {
+    min-width: 100px;
+    font-size: 0.9rem;
+    margin: 0 2px;
+  }
+
+  .horizontal-tabs :deep(.v-slide-group__content) {
+    justify-content: space-between;
   }
 }
 </style>
