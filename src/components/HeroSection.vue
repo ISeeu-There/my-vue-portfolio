@@ -20,6 +20,8 @@
               size="large"
               variant="flat"
               class="mr-4 text-white"
+              :href="myCV"
+              download
             >
               Download CV
               <v-icon>mdi-download</v-icon>
@@ -87,6 +89,7 @@
 
 <script setup lang="ts">
 import mypic from "@/assets/mypictur.png";
+import myCV from "@/assets/cv.pdf";
 interface SocialLink {
   icon: string;
   url: string;
