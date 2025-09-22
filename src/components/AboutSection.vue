@@ -1,10 +1,10 @@
 <template>
-  <section class="resume-section py-16" id="resume">
+  <section class="resume-section py-16" id="about">
     <v-container>
       <div class="resume-container">
         <v-row>
           <!-- Tab Navigation -->
-          <v-col cols="12" xl="4" class="mb-8 mb-xl-0">
+          <v-col cols="12" xl="12" class="mb-8">
             <div class="tab-navigation">
               <v-card
                 class="tab-nav-card"
@@ -13,23 +13,25 @@
                 color="grey-darken-3"
               >
                 <v-card-text class="pa-6">
-                  <v-tabs
-                    v-model="activeTab"
-                    direction="vertical"
-                    color="cyan"
-                    class="custom-tabs"
-                    show-arrows
-                  >
-                    <v-tab
-                      v-for="tab in tabs"
-                      :key="tab.value"
-                      :value="tab.value"
-                      class="tab-item"
+                  <!-- Tab Navigation -->
+                  <v-col cols="12" class="mb-4">
+                    <v-tabs
+                      v-model="activeTab"
+                      background-color="transparent"
+                      color="cyan"
+                      class="horizontal-tabs"
                     >
-                      <v-icon :icon="tab.icon" size="24" class="mr-3" />
-                      <span class="tab-text">{{ tab.label }}</span>
-                    </v-tab>
-                  </v-tabs>
+                      <v-tab
+                        v-for="tab in tabs"
+                        :key="tab.value"
+                        :value="tab.value"
+                        class="tab-item"
+                      >
+                        <v-icon :icon="tab.icon" size="24" class="mr-2" />
+                        <span>{{ tab.label }}</span>
+                      </v-tab>
+                    </v-tabs>
+                  </v-col>
                 </v-card-text>
               </v-card>
             </div>
@@ -465,16 +467,16 @@ onMounted(() => {
 .custom-tabs {
   background: transparent;
 }
+.horizontal-tabs {
+  display: flex;
+  justify-content: space-between; /* space between each tab */
+}
 
 .tab-item {
-  min-height: 70px !important;
-  justify-content: flex-start !important;
-  text-transform: none !important;
-  font-weight: 600 !important;
-  font-size: 1.1rem !important;
-  margin-bottom: 8px !important;
-  border-radius: 12px !important;
-  transition: all 0.3s ease !important;
+  text-transform: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  min-width: auto;
 }
 
 .tab-item:hover {
