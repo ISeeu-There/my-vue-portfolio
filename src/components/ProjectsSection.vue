@@ -1,7 +1,7 @@
 <template>
   <section id="projects" class="py-16 resume-section">
     <v-container>
-      <!-- Header Section with Animation -->
+      <!-- Header Section -->
       <div class="text-center mb-16" data-aos="fade-up">
         <div class="section-badge mb-6">
           <v-chip
@@ -47,21 +47,20 @@
         </div>
       </div>
 
-      <!-- Projects Swiper -->
-      <Swiper
-        :space-between="30"
-        :slides-per-view="1"
-        :breakpoints="{
-          640: { slidesPerView: 1 },
-          768: { slidesPerView: 2 },
-          1024: { slidesPerView: 3 },
-        }"
-        navigation
-        pagination
-      >
-        <SwiperSlide v-for="(project, index) in projects" :key="project.title">
+      <!-- Projects Grid -->
+      <v-row class="justify-center">
+        <v-col
+          v-for="(project, index) in projects"
+          :key="project.title"
+          cols="12"
+          sm="6"
+          lg="4"
+          class="mb-8 d-flex"
+          :data-aos="'fade-up'"
+          :data-aos-delay="index * 100"
+        >
           <v-card
-            class="project-card h-100 d-flex flex-column"
+            class="project-card d-flex flex-column h-100"
             elevation="0"
             rounded="xl"
             hover
@@ -74,7 +73,7 @@
               :class="{ active: hoveredCard === index }"
             ></div>
 
-            <!-- Image Section with Overlay -->
+            <!-- Image Section -->
             <div class="image-container position-relative">
               <v-img
                 :src="project.image"
@@ -95,7 +94,7 @@
                 </div>
               </v-img>
 
-              <!-- Project Status Badge -->
+              <!-- Status Badge -->
               <v-chip
                 :color="
                   project.status === 'Live'
@@ -117,10 +116,8 @@
             </div>
 
             <!-- Card Content -->
-            <v-card-text
-              class="pa-6 position-relative flex-grow-1 d-flex flex-column"
-            >
-              <!-- Project Title with Icon -->
+            <v-card-text class="pa-6 d-flex flex-column flex-grow-1">
+              <!-- Title -->
               <div class="d-flex align-center mb-3">
                 <v-avatar
                   :color="project.primaryTech.color"
@@ -138,12 +135,12 @@
                 </h4>
               </div>
 
-              <!-- Project Description -->
+              <!-- Description -->
               <p class="text-body-1 text-white mb-4 line-height-relaxed">
                 {{ project.description }}
               </p>
 
-              <!-- Project Stats -->
+              <!-- Stats -->
               <div class="project-stats mb-4">
                 <v-row no-gutters>
                   <v-col cols="4" class="text-center">
@@ -173,7 +170,7 @@
                 </v-row>
               </div>
 
-              <!-- Technology Stack -->
+              <!-- Tech Stack -->
               <div class="technologies mb-6">
                 <div
                   class="text-subtitle-2 font-weight-bold mb-2 text-grey-darken-2"
@@ -196,7 +193,7 @@
                 </div>
               </div>
 
-              <!-- Action Buttons aligned to bottom -->
+              <!-- Buttons fixed at bottom -->
               <div class="mt-auto button-group">
                 <v-btn
                   variant="flat"
@@ -253,38 +250,36 @@
               <div class="decoration-dot" style="background: #4caf50"></div>
             </div>
           </v-card>
-        </SwiperSlide>
-      </Swiper>
+        </v-col>
+      </v-row>
     </v-container>
   </section>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import { Swiper, SwiperSlide } from "swiper/vue";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-
-// Assets
 import canubeatme from "@/assets/canubeatme.png";
 import eventgg from "@/assets/event-gg.png";
+
 import myportfolio from "@/assets/myportfolio.png";
+
 import realestateagency from "@/assets/real-estate-agency.png";
 import todo from "@/assets/todo.png";
 import ekadia from "@/assets/ekadia.png";
 
-// Types
+import { ref } from "vue";
+
 interface TechItem {
   name: string;
   icon: string;
   color: string;
 }
+
 interface ProjectStats {
   duration: string;
   team: string;
   role: string;
 }
+
 interface Project {
   title: string;
   description: string;
@@ -297,14 +292,13 @@ interface Project {
   stats: ProjectStats;
 }
 
-// Reactive
 const hoveredCard = ref<number | null>(null);
 
 const projects: Project[] = [
   {
-    title: "Gaming Platform",
+    title: "Gaming Platform ",
     description:
-      "An interactive gaming platform that connects players with events and tournaments in real-time. Built with Vue.js, Vuetify, and Firebase, it features a responsive interface, real-time updates, and seamless user experience.",
+      "An interactive gaming platform that connects players with events and tournaments in real-time. Built with Vue.js, Vuetify, and Firebase, it features a responsive interface, real-time updates, and seamless user experience for gamers looking to join or host gaming events.",
     image: eventgg,
     primaryTech: { name: "Vue.js", icon: "mdi-vuejs", color: "green" },
     status: "Live",
@@ -321,20 +315,82 @@ const projects: Project[] = [
   {
     title: "E-Kadia",
     description:
-      "Completed a 3-month internship focused on modern web development...",
+      "Completed a 3-month internship focused on modern web development.Worked with Vue 3, TypeScript, and REST APIs to build and improve front-endapplications.Refactored a core project (E-Kadia): migrated the codebase from Vue 2 (JavaScript)to Vue 3 (TypeScript), improving maintainability and scalability.Collaborated with the development team to ensure code quality, best practices, andsmooth integration with backend services.Gained hands-on experience in frontend frameworks, API consumption, and project modernization",
     image: ekadia,
-    primaryTech: { name: "Vue.js", icon: "mdi-vuejs", color: "green" },
+    primaryTech: { name: "Vuejs", icon: "mdi-vuejs", color: "green" },
     status: "Live",
-    stats: { duration: "4 weeks", team: "only me", role: "Lead" },
+    stats: { duration: " 4 weeks", team: "only me", role: "lead" },
     technologies: [
       { name: "Vue.js", icon: "mdi-vuejs", color: "green" },
       { name: "Vuetify", icon: "mdi-vuetify", color: "blue" },
       { name: "Firebase", icon: "mdi-firebase", color: "blue" },
+
       { name: "TypeScript", icon: "mdi-language-typescript", color: "blue" },
     ],
     gitUrl: "https://github.com/ISeeu-There/to-do-list-",
   },
-  // Add other projects...
+  {
+    title: "E-Football Site Web",
+    description:
+      "A sleek and responsive web platform for e-football enthusiasts, built with Next.js and Node.js. The site allows users to explore football content, stay updated with the latest matches, and enjoy a smooth and interactive browsing experience.",
+    image: canubeatme,
+    primaryTech: { name: "Next.js", icon: "mdi-react", color: "green" },
+    status: "Completed",
+    stats: { duration: " 1 week", team: "only me", role: "Lead" },
+    technologies: [
+      { name: "Next.js", icon: "mdi-vuejs", color: "green" },
+      { name: "Node.js", icon: "mdi-nodejs", color: "green-darken-2" },
+    ],
+    liveUrl: "https://game-awwards.vercel.app/",
+    gitUrl: "https://github.com/ISeeu-There/game-awwards",
+  },
+  {
+    title: "Real Estat Agency",
+    description:
+      "A modern real estate web application built with Vue.js, Vuetify, Firebase, Node.js, and TypeScript. The platform allows users to browse properties with ease, while an integrated admin dashboard enables full management of listings, users, and transactions in real-time.",
+    image: realestateagency,
+    primaryTech: { name: "Vue.js", icon: "mdi-vuejs", color: "green" },
+    status: "In Progress",
+    stats: { duration: "2 week", team: "only me", role: "Lead" },
+    technologies: [
+      { name: "Vue.js", icon: "mdi-vuejs", color: "green" },
+      { name: "Node.js", icon: "mdi-nodejs", color: "green-darken-2" },
+      { name: "Firebase", icon: "mdi-firebase", color: "green-darken-3" },
+      { name: "Vuetify", icon: "mdi-vuetify", color: "blue" },
+      { name: "TypeScript", icon: "mdi-language-typescript", color: "blue" },
+    ],
+    liveUrl: "https://real-estate-agency-tawny.vercel.app/",
+    gitUrl: "https://github.com/ISeeu-There/real-estate-agency",
+  },
+  {
+    title: "My Portfolio Created with React",
+    description:
+      "Creative portfolio website showcasing artistic works with interactive 3D elements, smooth animations, and immersive user experience using cutting-edge web technologies.",
+    image: myportfolio,
+    primaryTech: { name: "React", icon: "mdi-react", color: "blue" },
+    status: "Completed",
+    stats: { duration: "2 Mo", team: "2", role: "Dev" },
+    technologies: [
+      { name: "React", icon: "mdi-react", color: "blue" },
+      { name: "Three.js", icon: "mdi-cube-outline", color: "purple" },
+      { name: "GSAP", icon: "mdi-animation", color: "green" },
+      { name: "WebGL", icon: "mdi-triangle", color: "orange" },
+    ],
+    gitUrl: "https://github.com/ISeeu-There/My-Portfolio",
+  },
+  {
+    title: "To Do List",
+    description: "",
+    image: todo,
+    primaryTech: { name: "vue", icon: "mdi-vuejs", color: "green" },
+    status: "Completed",
+    stats: { duration: "1 week", team: "only me", role: "lead" },
+    technologies: [
+      { name: "Vue", icon: "mdi-vuejs", color: "green" },
+      { name: "TypeScript", icon: "mdi-language-typescript", color: "blue" },
+    ],
+    gitUrl: "https://github.com/ISeeu-There/to-do-list-",
+  },
 ];
 
 const onCardHover = (index: number, isHovered: boolean) => {
@@ -358,18 +414,6 @@ const getStatusIcon = (status: string): string => {
 <style scoped>
 .resume-section {
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-}
-.project-card {
-  display: flex;
-  flex-direction: column;
-}
-.v-card-text {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-.button-group {
-  margin-top: auto;
 }
 .line-height-relaxed {
   line-height: 1.8;
