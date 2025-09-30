@@ -327,7 +327,6 @@ const projects: Project[] = [
 
       { name: "TypeScript", icon: "mdi-language-typescript", color: "blue" },
     ],
-    gitUrl: "https://github.com/ISeeu-There/to-do-list-",
   },
   {
     title: "E-Football Site Web",
