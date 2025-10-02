@@ -369,7 +369,7 @@ const education: Education = {
     {
       institution: "Sig-Service ",
       degree: "Dely Ibrahim",
-      duration: "3 months",
+      duration: "In Position ",
     },
     {
       institution: "Malek Ben Nabi High School",
