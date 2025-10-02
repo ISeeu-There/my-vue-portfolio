@@ -313,6 +313,22 @@ const projects: Project[] = [
     gitUrl: "https://github.com/ISeeu-There/game-event",
   },
   {
+    title: "Save Bean",
+    description:
+      "My first Game that make it after 30 min from learn how use JS for games development , You have pass the Boxes and Keep the Score Count , You can Control Bean by using space for jumb, and left / right for makes him move , but be carful if he moves out off screen u will lose , ENJOY ",
+    image: eventgg,
+    primaryTech: { name: "Vanilla.js", icon: "mdi-vuejs", color: "yellow" },
+    status: "Live",
+    stats: { duration: "Done", team: "only me", role: "Lead" },
+    technologies: [
+      { name: "vanilla.js", icon: "mdi-vuejs", color: "yellow" },
+      { name: "Kaplay", icon: "mdi-kaplay", color: "green-darken-2" },
+      { name: "TypeScript", icon: "mdi-language-typescript", color: "blue" },
+    ],
+    liveUrl: "https://save-bean.vercel.app/",
+    gitUrl: "https://github.com/ISeeu-There/save-bean",
+  },
+  {
     title: "E-Kadia",
     description:
       "Completed a 3-month internship focused on modern web development.Worked with Vue 3, TypeScript, and REST APIs to build and improve front-endapplications.Refactored a core project (E-Kadia): migrated the codebase from Vue 2 (JavaScript)to Vue 3 (TypeScript), improving maintainability and scalability.Collaborated with the development team to ensure code quality, best practices, andsmooth integration with backend services.Gained hands-on experience in frontend frameworks, API consumption, and project modernization",
