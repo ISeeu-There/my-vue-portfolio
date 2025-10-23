@@ -1,22 +1,22 @@
 <template>
   <v-app>
-    <AppHeader />
     <v-main>
+      <HeroSection id="hero" class="hero" />
+      <ServicesSection id="about" />
+      <AboutSection id="services" />
+      <ProjectsSection id="projects" />
+      <ContactSection id="contact" />
       <router-view />
     </v-main>
-    <AppFooter />
   </v-app>
 </template>
 
 <script setup lang="ts">
-import AboutSection from "@/components/AboutSection.vue";
-import AppFooter from "@/components/AppFooter.vue";
-import AppHeader from "@/components/AppHeader.vue";
-import ContactSection from "@/components/ContactSection.vue";
-import HeroSection from "@/components/HeroSection.vue";
-import ProjectsSection from "@/components/ProjectsSection.vue";
-import ServicesSection from "@/components/ServicesSection.vue";
-import HomePage from "./views/HomePage.vue";
+import AboutSection from "../components/AboutSection.vue";
+import ContactSection from "../components/ContactSection.vue";
+import HeroSection from "../components/HeroSection.vue";
+import ProjectsSection from "../components/ProjectsSection.vue";
+import ServicesSection from "../components/ServicesSection.vue";
 </script>
 
 <style scoped>

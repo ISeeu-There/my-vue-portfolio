@@ -459,7 +459,11 @@ onMounted(() => {
   max-width: 600px;
 }
 
-/* Tab Navigation Styles - FIXED */
+/* Tab Navigation Styles */
+.tab-navigation {
+  width: 100%;
+}
+
 .tab-nav-card {
   background: rgba(55, 65, 81, 0.9) !important;
   backdrop-filter: blur(20px);
@@ -477,10 +481,11 @@ onMounted(() => {
 .horizontal-tabs :deep(.v-slide-group__content) {
   justify-content: space-evenly;
   width: 100%;
+  padding: 20px;
 }
 
 .horizontal-tabs :deep(.v-tab__slider) {
-  display: none !important; /* Remove the underline slider */
+  display: none !important;
 }
 
 .horizontal-tabs :deep(.v-tabs-bar) {
@@ -642,6 +647,29 @@ onMounted(() => {
   }
 }
 
+@media (max-width: 960px) {
+  .tab-nav-card {
+    margin: 0 -12px; /* Extend to edges on mobile */
+    border-radius: 12px !important;
+  }
+
+  .horizontal-tabs :deep(.v-slide-group__content) {
+    padding: 12px 8px;
+  }
+
+  .tab-item {
+    min-width: 90px;
+    font-size: 0.95rem;
+    margin: 0 4px;
+    padding: 8px 12px !important;
+  }
+
+  .tab-item :deep(.v-icon) {
+    font-size: 20px;
+    margin-right: 4px !important;
+  }
+}
+
 @media (max-width: 600px) {
   .tab-text {
     font-size: 1rem;
@@ -656,14 +684,56 @@ onMounted(() => {
     font-size: 0.875rem;
   }
 
-  .tab-item {
-    min-width: 100px;
-    font-size: 0.9rem;
-    margin: 0 2px;
+  /* Mobile-specific tab styling */
+  .tab-nav-card {
+    margin: 0 -16px; /* Full width on small screens */
+    border-radius: 8px !important;
   }
 
   .horizontal-tabs :deep(.v-slide-group__content) {
     justify-content: space-between;
+    padding: 10px 4px;
+  }
+
+  .tab-item {
+    min-width: 80px;
+    max-width: 110px;
+    font-size: 0.8rem;
+    margin: 0 2px;
+    padding: 6px 8px !important;
+    border-radius: 8px !important;
+  }
+
+  .tab-item :deep(.v-icon) {
+    font-size: 18px;
+    margin-right: 2px !important;
+  }
+
+  /* Hide text on very small screens, show only icons */
+  .tab-item span {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 400px) {
+  /* Extra small screens - icon only mode */
+  .tab-item {
+    min-width: 60px;
+    max-width: 70px;
+    padding: 8px 4px !important;
+  }
+
+  .tab-item span {
+    display: none; /* Hide text, show only icons */
+  }
+
+  .tab-item :deep(.v-icon) {
+    margin-right: 0 !important;
+    font-size: 22px;
+  }
+
+  .horizontal-tabs :deep(.v-slide-group__content) {
+    justify-content: space-evenly;
   }
 }
 </style>

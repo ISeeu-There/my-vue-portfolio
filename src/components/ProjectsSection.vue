@@ -221,6 +221,7 @@
                 </v-btn>
 
                 <v-btn
+                  v-if="project.gitUrl"
                   color="cyan"
                   variant="outlined"
                   rounded="pill"
@@ -231,6 +232,17 @@
                   :href="project.gitUrl"
                 >
                   View Source Code
+                </v-btn>
+                <v-btn
+                  variant="flat"
+                  rounded="pill"
+                  size="default"
+                  class="mb-2 project-btn-primary disabled"
+                  append-icon="mdi-web-off"
+                  block
+                  v-else
+                >
+                  Not Available Source Code
                 </v-btn>
               </div>
             </v-card-text>
@@ -259,12 +271,13 @@
 <script setup lang="ts">
 import canubeatme from "@/assets/canubeatme.png";
 import eventgg from "@/assets/event-gg.png";
-
+import firstgame from "@/assets/myfirstgame.png";
 import myportfolio from "@/assets/myportfolio.png";
 
 import realestateagency from "@/assets/real-estate-agency.png";
 import todo from "@/assets/todo.png";
 import ekadia from "@/assets/ekadia.png";
+import aichat from "@/assets/aichatbot.png";
 
 import { ref } from "vue";
 
@@ -313,10 +326,26 @@ const projects: Project[] = [
     gitUrl: "https://github.com/ISeeu-There/game-event",
   },
   {
+    title: "AI ChatBot",
+    description:
+      "A Vue-based AI chatbot project focused on natural conversations and data intelligence. The chatbot supports real-time interaction and, when integrated with a backend, can perform dynamic data analysis, pattern detection, and automated reporting. ",
+    image: aichat,
+    primaryTech: { name: "Vue.js", icon: "mdi-vuejs", color: "green" },
+    status: "Live",
+    stats: { duration: "still in dev", team: "only me", role: "Lead" },
+    technologies: [
+      { name: "Vue.js", icon: "mdi-vuejs", color: "green" },
+      { name: "Vuetify", icon: "mdi-vuetify", color: "green-darken-2" },
+      { name: "TypeScript", icon: "mdi-language-typescript", color: "blue" },
+    ],
+    liveUrl: "https://ai-chat-bot-blush-rho.vercel.app/",
+    gitUrl: "https://github.com/ISeeu-There/ai-chat-bot",
+  },
+  {
     title: "Save Bean",
     description:
       "My first Game that make it after 30 min from learn how use JS for games development , You have pass the Boxes and Keep the Score Count , You can Control Bean by using space for jumb, and left / right for makes him move , but be carful if he moves out off screen u will lose , ENJOY ",
-    image: eventgg,
+    image: firstgame,
     primaryTech: { name: "Vanilla.js", icon: "mdi-vuejs", color: "yellow" },
     status: "Live",
     stats: { duration: "Done", team: "only me", role: "Lead" },
@@ -395,7 +424,8 @@ const projects: Project[] = [
   },
   {
     title: "To Do List",
-    description: "",
+    description:
+      "A clean and responsive To-Do List app built with Vue 3 and TypeScript, featuring task creation, editing, deletion, and completion tracking with a modern UI.",
     image: todo,
     primaryTech: { name: "vue", icon: "mdi-vuejs", color: "green" },
     status: "Completed",
