@@ -278,6 +278,7 @@ import realestateagency from "@/assets/real-estate-agency.png";
 import todo from "@/assets/todo.png";
 import ekadia from "@/assets/ekadia.png";
 import aichat from "@/assets/aichatbot.png";
+import food from "@/assets/food.png";
 
 import { ref } from "vue";
 
@@ -339,7 +340,23 @@ const projects: Project[] = [
       { name: "TypeScript", icon: "mdi-language-typescript", color: "blue" },
     ],
     liveUrl: "https://ai-chat-bot-blush-rho.vercel.app/",
-    gitUrl: "https://github.com/ISeeu-There/ai-chat-bot",
+    gitUrl: "",
+  },
+  {
+    title: "Food App",
+    description:
+      "Food App is a modern food delivery web application built with Vue 3, Vuetify.It offers a smooth user experience, a clean interface, and full functionality for ordering and managing meals. ",
+    image: food,
+    primaryTech: { name: "Vue.js", icon: "mdi-vuejs", color: "green" },
+    status: "Live",
+    stats: { duration: "still in dev", team: "only me", role: "Lead" },
+    technologies: [
+      { name: "Vue.js", icon: "mdi-vuejs", color: "green" },
+      { name: "Vuetify", icon: "mdi-vuetify", color: "green-darken-2" },
+      { name: "TypeScript", icon: "mdi-language-typescript", color: "blue" },
+    ],
+    liveUrl: "https://vercel.com/iseeu-theres-projects/food-app-xuzu",
+    gitUrl: "",
   },
   {
     title: "Save Bean",
